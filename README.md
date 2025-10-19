@@ -2,13 +2,12 @@
 
 [![Node.js](https://img.shields.io/badge/Node.js-20.x-green.svg)](https://nodejs.org)
 [![Express](https://img.shields.io/badge/Express-4.x-blue.svg)](https://expressjs.com)
-[![License](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
-> A RESTful API for managing to-do tasks built with Node.js and Express.js. Perfect for learning backend development fundamentals and CRUD operations.
+> A RESTful API for managing to-do tasks built with Node.js and Express.js.
 
 ## 🎯 Project Overview
 
-This is a simple yet comprehensive REST API that demonstrates all essential CRUD (Create, Read, Update, Delete) operations for managing a to-do list. The project is designed as a learning resource for backend development with Node.js.
+This is a simple yet comprehensive REST API that demonstrates all essential CRUD (Create, Read, Update, Delete) operations for managing a to-do list. 
 
 ### Features
 
