@@ -49,9 +49,11 @@ This is a simple yet comprehensive REST API that demonstrates all essential CRUD
 
 3. **Install backend and frontend dependencies**
    ```bash
-   cd backend && npm install
-   cd ../frontend && npm install
-   cd ..
+   cd backend
+   npm install
+   cd ../frontend
+   npm install
+   cd ../
    ```
 
 ## 🚀 Running the Application
