@@ -104,12 +104,10 @@ Once the backend is running, you can test the API endpoints using:
 
 **Get all todos**
 ```bash
-curl http://localhost:3000/api/todos
+curl http://localhost:8888/todos
 ```
 
 **Create a new todo**
-```bash
-curl -X POST http://localhost:3000/api/todos \
-  -H "Content-Type: application/json" \
-  -d '{"title": "My new task", "completed": false}'
+```Powershell
+Invoke-RestMethod -Uri "http://localhost:8888/todos" -Method Post -Body '{"task":"Buy milk","description":"From store"}' -ContentType "application/json"
 ```
