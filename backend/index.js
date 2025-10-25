@@ -2,6 +2,7 @@
 const express = require('express');
 const app = express(); 
 const crypto = require('crypto');
+const cors = require('cors');
 // Port is the endpoint for communication between the 2 computers
 const PORT = 8888;
 

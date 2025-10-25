@@ -1,23 +1,16 @@
 {
-  "name": "bryan-restful-api",
+  "name": "todo_list_fullstack",
   "version": "1.0.0",
-  "description": "Just a personal RESTFUL API project",
+  "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Rubberduckduck/bryan-restful-api.git"
-  },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/Rubberduckduck/bryan-restful-api/issues"
-  },
-  "homepage": "https://github.com/Rubberduckduck/bryan-restful-api#readme",
-  "dependencies": {
-    "express": "^5.1.0"
+  "type": "commonjs",
+  "devDependencies": {
+    "concurrently": "^9.2.1"
   }
 }
