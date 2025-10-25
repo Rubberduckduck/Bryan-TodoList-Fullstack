@@ -100,14 +100,26 @@ Once the backend is running, you can test the API endpoints using:
 - [Insomnia](https://insomnia.rest/)
 - cURL commands
 
-### Example API Request
+### Example API Request (Executing with Powershell)
 
-**Get all todos**
+#### Get All Todos
+**Using cURL (Mac/Linux/Git Bash):**
 ```bash
 curl http://localhost:8888/todos
 ```
-
-**Create a new todo**
+**Using PowerShell:**
 ```Powershell
-Invoke-RestMethod -Uri "http://localhost:8888/todos" -Method Post -Body '{"task":"Buy milk","description":"From store"}' -ContentType "application/json"
+Invoke-RestMethod -Uri "http://localhost:8888/todos" -Method Get
+```
+
+#### Create a New Todo
+
+**Using cURL (Mac/Linux/Git Bash):**
+```bash
+curl -X POST http://localhost:8888/todos -H "Content-Type: application/json" -d "{\"task\":\"Test1\",\"description\":\"Test1\"}"
+```
+
+**Using PowerShell:**
+```Powershell
+Invoke-RestMethod -Uri "http://localhost:8888/todos" -Method Post -Body '{"task":"Test1","description":"Test1"}' -ContentType "application/json"
 ```
