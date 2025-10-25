@@ -1,13 +1,12 @@
 # 📝 To-Do List REST API
 
-[![Node.js](https://img.shields.io/badge/Node.js-20.x-green.svg)](https://nodejs.org)
 [![Express](https://img.shields.io/badge/Express-4.x-blue.svg)](https://expressjs.com)
 
 > A RESTful API for managing to-do tasks built with Node.js and Express.js.
 
 ## 🎯 Project Overview
 
-This is a simple yet comprehensive REST API that demonstrates all essential CRUD (Create, Read, Update, Delete) operations for managing a to-do list. 
+This is a simple yet comprehensive REST API that demonstrates all essential CRUD (Create, Read, Update, Delete) operations for managing a to-do list.
 
 ### Features
 
@@ -38,23 +37,32 @@ This is a simple yet comprehensive REST API that demonstrates all essential CRUD
 ### Setup
 
 1. **Clone the repository**
-git clone https://github.com/Rubberduckduck/Bryan-TodoList-Fullstack.git
-cd Bryan-TodoList-Fullstack
+   ```bash
+   git clone https://github.com/Rubberduckduck/Bryan-TodoList-Fullstack.git
+   cd Bryan-TodoList-Fullstack
+   ```
 
 2. **Install root dependencies**
-npm install
+   ```bash
+   npm install
+   ```
 
 3. **Install backend and frontend dependencies**
-cd backend && npm install
-cd ../frontend && npm install
-cd ..
+   ```bash
+   cd backend && npm install
+   cd ../frontend && npm install
+   cd ..
+   ```
 
 ## 🚀 Running the Application
 
 ### Option 1: Run Both Frontend and Backend Together
 
 Start both servers simultaneously with a single command:
+
+```bash
 npm start
+```
 
 This will concurrently run:
 - **Backend API** on `http://localhost:8888`
@@ -64,31 +72,42 @@ This will concurrently run:
 
 To run and test just the backend API server:
 
+```bash
 cd backend
 npm start
+```
 
 The backend will be available at `http://localhost:8888`.
 
 ### Option 3: Run Frontend Only
 
 To run just the frontend application:
+
+```bash
 cd frontend
 npm start
+```
+
 The frontend will be available at `http://localhost:3000`.
 
 ## 🧪 Testing the API
 
 Once the backend is running, you can test the API endpoints using:
+
 - [Postman](https://www.postman.com/)
 - [Insomnia](https://insomnia.rest/)
 - cURL commands
 
 ### Example API Request
-Get all todos
+
+**Get all todos**
+```bash
 curl http://localhost:3000/api/todos
+```
 
-Create a new todo
-curl -X POST http://localhost:3000/api/todos
--H "Content-Type: application/json"
--d '{"title": "My new task", "completed": false}'
-
+**Create a new todo**
+```bash
+curl -X POST http://localhost:3000/api/todos \
+  -H "Content-Type: application/json" \
+  -d '{"title": "My new task", "completed": false}'
+```
