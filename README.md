@@ -37,4 +37,58 @@ This is a simple yet comprehensive REST API that demonstrates all essential CRUD
 
 ### Setup
 
+1. **Clone the repository**
+git clone https://github.com/Rubberduckduck/Bryan-TodoList-Fullstack.git
+cd Bryan-TodoList-Fullstack
+
+2. **Install root dependencies**
+npm install
+
+3. **Install backend and frontend dependencies**
+cd backend && npm install
+cd ../frontend && npm install
+cd ..
+
+## 🚀 Running the Application
+
+### Option 1: Run Both Frontend and Backend Together
+
+Start both servers simultaneously with a single command:
+npm start
+
+This will concurrently run:
+- **Backend API** on `http://localhost:8888`
+- **Frontend** on `http://localhost:3000`
+
+### Option 2: Run Backend Only
+
+To run and test just the backend API server:
+
+cd backend
+npm start
+
+The backend will be available at `http://localhost:8888`.
+
+### Option 3: Run Frontend Only
+
+To run just the frontend application:
+cd frontend
+npm start
+The frontend will be available at `http://localhost:3000`.
+
+## 🧪 Testing the API
+
+Once the backend is running, you can test the API endpoints using:
+- [Postman](https://www.postman.com/)
+- [Insomnia](https://insomnia.rest/)
+- cURL commands
+
+### Example API Request
+Get all todos
+curl http://localhost:3000/api/todos
+
+Create a new todo
+curl -X POST http://localhost:3000/api/todos
+-H "Content-Type: application/json"
+-d '{"title": "My new task", "completed": false}'
 
