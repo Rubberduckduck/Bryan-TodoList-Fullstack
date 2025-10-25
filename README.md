@@ -100,7 +100,7 @@ Once the backend is running, you can test the API endpoints using:
 - [Insomnia](https://insomnia.rest/)
 - cURL commands
 
-### Example API Request (Executing with Powershell)
+### Example API Request
 
 #### Get All Todos
 **Using cURL (Mac/Linux/Git Bash):**
