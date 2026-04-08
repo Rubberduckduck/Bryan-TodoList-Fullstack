@@ -4,7 +4,15 @@
   "description": "Just a personal RESTFUL API project",
   "main": "index.js",
   "scripts": {
-        "start": "node .",
-        "dev": "nodemon ."
+    "start": "node .",
+    "dev": "nodemon ."
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "cors": "^2.8.6",
+    "express": "^5.2.1"
   }
 }

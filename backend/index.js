@@ -64,6 +64,26 @@ app.post('/todos',
     } 
 );
 
+// Delete: Delete data from server
+app.delete('/todos/:id',
+    // When this exact url fires, this function will fire to handle the request
+    (req, res) => {
+
+        // Get id to delete from url
+        // Dont use parseInt because crypto.randomUUID() returns a string
+        const todoID = todos.findIndex( i => i.ID === req.params.id);
+
+        if(todoID === -1 ){return res.status(404).send("ID not found!");}
+
+        // Remove item
+        const deletedTodo = todos.splice(todoID, 1);
+
+        res.status(201).json({
+            message: "Todo successfully deleted!"
+        })
+    }
+)
+
 app.listen(PORT, 
     () => console.log(`Alive on http://localhost:${PORT}`)
 )
