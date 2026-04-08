@@ -12,7 +12,7 @@ app.use(express.json());
 // Hard code the start todo for now
 let todos = []
 
-// This will in turn: GET http://localhost:<PORT>/one-piece
+// This will in turn: GET http://localhost:<PORT>/todos
 // GET is to retrieve data from a server
 // 2nd arg is callback function
 app.get('/todos', 
@@ -63,6 +63,29 @@ app.post('/todos',
         });
     } 
 );
+
+// Change an element's data
+app.put('/todos/:id',
+    (req, res) => {
+        // Get id to update from url
+        // Dont use parseInt because crypto.randomUUID() returns a string
+        const todo = todos.find( i => i.ID === req.params.id);
+
+        // Find() returns undefined if cannot find
+        if(todo === undefined ){return res.status(404).send("ID not found!");}
+
+        // Update todo task's name
+        todo.task = req.body.task;
+
+        // Update todo description
+        todo.description = req.body.description;
+
+        res.status(201).json({
+            message: "Todo task name successfully updated!",
+            data: todo
+        })
+    }
+)
 
 // Delete: Delete data from server
 app.delete('/todos/:id',
