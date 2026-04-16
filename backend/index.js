@@ -18,13 +18,25 @@ let todos = []
 app.get('/todos', 
     // When this exact url fires, this function will fire to handle the request
     (req, res)=> {
-        res.status(200).json({
+        const filterDate = req.query.date;
+        if(filterDate){
+            const filtered = todos.filter(t => t.created_at === filterDate);
+            res.status(200).json({
             // This will be in a json format
-            // To read all todos
-            Message: "Read Todos",
-            Count: todos.length,
-            data: todos,
-        });
+            Message: "Filtered Todos",
+            Count: filtered.length,
+            data: filtered,
+            });
+        }
+        else{
+            res.status(200).json({
+                // This will be in a json format
+                // To read all todos
+                Message: "Read Todos",
+                Count: todos.length,
+                data: todos,
+            });
+        }
     } 
 );
 
@@ -34,7 +46,7 @@ app.post('/todos',
     (req, res)=> {
         
         // Get data from request's body
-        const { task, description } = req.body = req.body;
+        const { task, description, date } = req.body = req.body;
 
         // Validate input
         if(!task || task.trim() === ""){
@@ -50,7 +62,8 @@ app.post('/todos',
             task: task.trim(),
             description: description || "",
             completed: false,
-            created_at: new Date().toISOString()
+            // Will use date send in from frontend react
+            created_at: date || new Date().toLocaleDateString('en-CA')
         }
 
         todos.push(new_todo);
