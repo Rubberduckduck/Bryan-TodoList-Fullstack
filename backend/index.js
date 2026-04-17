@@ -9,6 +9,9 @@ const PORT = 8888;
 // Middleware, convert body to json
 app.use(express.json());
 
+// Enable CORS for frontend communication
+app.use(cors());
+
 // Hard code the start todo for now
 let todos = []
 
