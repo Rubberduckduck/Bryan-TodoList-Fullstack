@@ -12,8 +12,8 @@ app.use(express.json());
 // Enable CORS for frontend communication
 app.use(cors());
 
-// Hard code the start todo for now
-let todos = []
+// Database to store todos
+const db = require('./Database/database'); 
 
 // This will in turn: GET http://localhost:<PORT>/todos
 // GET is to retrieve data from a server
@@ -23,22 +23,15 @@ app.get('/todos',
     (req, res)=> {
         const filterDate = req.query.date;
         if(filterDate){
-            const filtered = todos.filter(t => t.created_at === filterDate);
-            res.status(200).json({
-            // This will be in a json format
-            Message: "Filtered Todos",
-            Count: filtered.length,
-            data: filtered,
-            });
+            // Filter from database for all todos under that date
+            // .all() is when u expecting array of datas, selecting from multiple rows
+            const filtered = db.prepare('SELECT * FROM todos WHERE created_at = ?').all(filterDate);
+            res.status(200).json({ Message: "Filtered Todos", Count: filtered.length, data: filtered });
         }
         else{
-            res.status(200).json({
-                // This will be in a json format
-                // To read all todos
-                Message: "Read Todos",
-                Count: todos.length,
-                data: todos,
-            });
+            // Get all todos from the db
+            const allTodos = db.prepare('SELECT * FROM todos').all();
+            res.status(200).json({ Message: "Read Todos", Count: allTodos.length, data: allTodos });
         }
     } 
 );
@@ -64,12 +57,15 @@ app.post('/todos',
             ID: crypto.randomUUID(),
             task: task.trim(),
             description: description || "",
-            completed: false,
+            completed: 0,
             // Will use date send in from frontend react
             created_at: date || new Date().toLocaleDateString('en-CA')
         }
 
-        todos.push(new_todo);
+        // Insert new todo into db
+        // .run is used for post(Create), update and delete
+        db.prepare(`INSERT INTO todos(ID, task, description, completed, created_at)
+            VALUES (@ID, @task, @description, @completed, @created_at)`).run(new_todo);
 
 
         // Success response with 201 status
@@ -84,22 +80,15 @@ app.post('/todos',
 app.put('/todos/:id',
     (req, res) => {
         // Get id to update from url
-        // Dont use parseInt because crypto.randomUUID() returns a string
-        const todo = todos.find( i => i.ID === req.params.id);
+        const result = db.prepare('UPDATE todos SET task = ?, description = ? WHERE ID = ?').run(req.body.task, req.body.description, req.params.id);
+        
+        if(result === 0){
+            return res.status(401).json("ID NOT FOUND!");
+        }
 
-        // Find() returns undefined if cannot find
-        if(todo === undefined ){return res.status(404).send("ID not found!");}
+        const updated = db.prepare('SELECT * FROM todos WHERE ID = ?').get(req.params.id);
 
-        // Update todo task's name
-        todo.task = req.body.task;
-
-        // Update todo description
-        todo.description = req.body.description;
-
-        res.status(201).json({
-            message: "Todo task name successfully updated!",
-            data: todo
-        })
+        res.status(200).json({ message: "Todo updated!", data: updated });
     }
 )
 
@@ -108,18 +97,17 @@ app.delete('/todos/:id',
     // When this exact url fires, this function will fire to handle the request
     (req, res) => {
 
-        // Get id to delete from url
-        // Dont use parseInt because crypto.randomUUID() returns a string
-        const todoID = todos.findIndex( i => i.ID === req.params.id);
+        const result = db.prepare('DELETE FROM todos WHERE ID = ?').run(req.params.id);
 
-        if(todoID === -1 ){return res.status(404).send("ID not found!");}
-
-        // Remove item
-        const deletedTodo = todos.splice(todoID, 1);
+        if (result.changes === 0) {
+            return res.status(401).send("ID not found!");
+        }
 
         res.status(201).json({
             message: "Todo successfully deleted!"
         })
+
+        res.status(200).json({ message: "Todo successfully deleted!" });
     }
 )
 
