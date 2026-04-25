@@ -1,9 +1,6 @@
 import { useState } from "react";
 import "./App.css";
 
-// Constants
-import { MONTHS, DAYS } from "./constants";
-
 // Utilities
 import { toDateString, getDaysInMonth, getFirstDayOfMonth } from "./Utils/dateUtils";
 
