@@ -1,5 +1,5 @@
 // API base URL, change this if backend port ever changes
-export const API = "http://localhost:8888";
+export const API = "https://bryan-todolist-fullstack.onrender.com";
 
 export const MONTHS = [
   "January","February","March","April","May","June",
