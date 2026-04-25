@@ -15,7 +15,7 @@
     "web-vitals": "^2.1.4"
   },
 
-  "homepage": "https://Rubberduckduck.github.io/Bryan-TodoList-Fullstack",
+  "homepage": "https://rubberduckduck.github.io/Bryan-TodoList-Fullstack/",
 
   "scripts": {
     "predeploy": "npm run build",
